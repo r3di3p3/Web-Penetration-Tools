@@ -25,7 +25,6 @@ def printStartMessage():
 	print("---------------------------------------------------------------------")
 	print("				r3d_i3p3		")
 	print("			Brutforce POST request		")
-	print("			USTHB-SSI-M2	Audit			")
 	print("----------------------------------------------------------------------")
 
 def printHelp():
@@ -34,7 +33,7 @@ def printHelp():
 	print("\t-h\t\t--help\t\t\t\tTo print this message.")
 	print("\t-l\t\t--url\t\t\t\tweb page (ex : -l http://test.com/login.php).")
 	print("\t-u\t\t--user_option\t\t\tusername input name on form (ex: -u user).")
-	print("\t-p\t\t--pass_option\t\t\tpassword input name on fomr (ex: -p pass).")
+	print("\t-p\t\t--pass_option\t\t\tpassword input name on form (ex: -p pass).")
 	print("\t-s\t\t--username_wordlist\t\ttfile with usernames to test (ex: -s /usr/share/wordlists/metasploit/http_default_users.txt.")
 	print("\t-a\t\t--password_wordlist\t\tfile with passwords to test (ex: -a /usr/share/wordlists/metasploit/http_default_pass.txt.")
 	print("\t-v\t\t--verbose\t\t\tto active verbose mode (show evrey tentative).")
