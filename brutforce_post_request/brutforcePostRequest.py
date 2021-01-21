@@ -116,7 +116,7 @@ for opt, arg in opts:
 		testall = True
 
 if(len(sys.argv[1:]) < 5):
-	print(getopt.GetoptError("the command is not complte"))
+	print(getopt.GetoptError("incomplete command"))
 	printHelp()
 	sys.exit(2)
 attack()
