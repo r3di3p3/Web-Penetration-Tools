@@ -40,7 +40,7 @@ This script is designed to perform a brute force attack on an authentication web
   <input type="submit" value="login">
 </form> 
 ```
-## Exemple
+## Example
 ___Stop at the first successful authentication___
 ```
 ssh$ brutforce_post.py -l http://localhost/login.php -u username -p password -s /usr/share/wordlists/metasploit/http_default_users.txt -a /usr/share/wordlists/metasploit/http_default_pass.txt -v
