@@ -3,6 +3,8 @@ import sys, getopt
 import requests
 #import hashlib
 
+############################################################
+#Variables 
 url =""
 user_option = ""
 password_option =""
@@ -11,6 +13,14 @@ username_wordlist =""
 password_wordlist =""
 output = ""
 testall = False
+############################################################
+"""
+	print progress bar on console-line
+	arguments 
+	count 	: Number of actions taken 
+	total 	: The total value of actions
+	status 	: Status message to print 
+"""
 def progress(count, total, status=''):
 	bar_len = 60
 	filled_len = int(round(bar_len * count / float(total)))
@@ -20,13 +30,16 @@ def progress(count, total, status=''):
 
 	sys.stdout.write('[%s] %s%s ...%s\r' % (bar, percents, '%', status))
 	sys.stdout.flush()
-
+############################################################
+"""
+"""
 def printStartMessage():
 	print("---------------------------------------------------------------------")
 	print("				r3d_i3p3		")
 	print("			Brutforce POST request		")
 	print("----------------------------------------------------------------------")
 
+############################################################
 def printHelp():
 	print("usage : ")
 	print("brutforce_post.py -l <url> -u <user_post_option> -p <password_post_option> -s <username wordlist> -a <password wordlist> -v")
@@ -39,7 +52,9 @@ def printHelp():
 	print("\t-v\t\t--verbose\t\t\tto active verbose mode (show evrey tentative).")
 	print("\t-t\t\t--testall\t\t\tto test all, without stop after a correcte user,pass.")
 	print("\t-o\t\t--output\t\t\tfile to save correct user,pass.")
-
+############################################################
+"""
+"""
 def attack():
 	c_test = 0 
 
@@ -78,14 +93,12 @@ def attack():
 		#endFor
 	#endFor
 	print("good bye :-")
-	
+############################################################	
 
-
+#main
 try:
 	printStartMessage()
-	
 	opts, args = getopt.getopt(sys.argv[1:], 'thvl:u:p:s:a:o:', ['testall','help', 'verbose', "url=","user_option=","pass_option=","username_wordlist=","password_wordlist=","output="])
-	
 except getopt.GetoptError as err:
 	print(err)
 	printHelp()
