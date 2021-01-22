@@ -37,7 +37,7 @@ This script is designed to perform a brute force attack on an authentication web
   <input type="text" id="username" name="username"><br>
   <label for="password">password:</label><br>
   <input type="password" id=password" name="password"><br><br>
-  <input type="submit" value="Submit">
+  <input type="submit" value="login">
 </form> 
 ```
 ## Exemple
