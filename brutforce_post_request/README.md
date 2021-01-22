@@ -10,8 +10,6 @@ This script is designed to perform a brute force attack on an authentication web
 3. use of a main thread, with two nested loops to test all combinations
 
 # Help
-  -s <username wordlist> -a <password wordlist> -v
-  
 	-h		--help				To print this message.
   
 	-l		--url				web page (ex : -l http://test.com/login.php).
@@ -33,8 +31,21 @@ This script is designed to perform a brute force attack on an authentication web
 
 # Example of use
 ## HTML Code on Authentication page 
-  
-
 ```
-r3d# brutforcePostRequest.py -s login
-````
+ <form action="/login.php" method="post">
+  <label for="fname">username:</label><br>
+  <input type="text" id="username" name="username"><br>
+  <label for="password">password:</label><br>
+  <input type="password" id=password" name="password"><br><br>
+  <input type="submit" value="Submit">
+</form> 
+```
+## Exemple
+___Stop on the frist correct login___
+```
+ssh$ brutforce_post.py -l http://localhost/login.php -u username -p password -s /usr/share/wordlists/metasploit/http_default_users.txt -a /usr/share/wordlists/metasploit/http_default_pass.txt -v
+```
+___Test All Combination and save all correct login to found.txt___
+```
+ssh$ brutforce_post.py -l http://localhost/login.php -u username -p password -s /usr/share/wordlists/metasploit/http_default_users.txt -a /usr/share/wordlists/metasploit/http_default_pass.txt -t -o found.txt
+```
