@@ -40,6 +40,9 @@ def printStartMessage():
 	print("----------------------------------------------------------------------")
 
 ############################################################
+"""
+	Help message
+"""
 def printHelp():
 	print("usage : ")
 	print("brutforce_post.py -l <url> -u <user_post_option> -p <password_post_option> -s <username wordlist> -a <password wordlist> -v")
@@ -54,29 +57,36 @@ def printHelp():
 	print("\t-o\t\t--output\t\t\tfile to save correct user,pass.")
 ############################################################
 """
+	Attack function	
 """
 def attack():
+	#count attempts 
 	c_test = 0 
-
+	#load username and password wordlists 
 	username_wordlist_file = open(username_wordlist,"r")
 	password_wordlist_file = open(password_wordlist,"r")
 	usernames = username_wordlist_file.readlines()
 	passwords = password_wordlist_file.readlines()
 	username_wordlist_file.close()
 	password_wordlist_file.close()
-
+	#count nbr of usernames to test 
 	m_user = len(usernames)
 	print("usernames wordlist " + username_wordlist + " with " + str(m_user) +" usernames" ) 
+	#count nbr of passwords
 	m_pass = len(passwords)
 	print("usernames wordlist " + password_wordlist + " with " + str(m_pass) +" passwords" )
 	if(output !=""):
+		#create output file
 		output_file = open(output, "a")
+	#prepare error response to check/compare
 	error_content = requests.post(url,{str(user_option):"adadadadadadad",str(password_option):"adada"})
 	#print(hashlib.md5(str(error_content.content).encode()).hexdigest() )
 	print("starting ....")
 	for username in usernames:
 		for password in passwords:
+			#sending POST request
 			response = requests.post(url,{str(user_option):str(username[0:-1]),str(password_option):str(password[0:-1])})
+			#check
 			if(response.content == error_content.content):
 				c_test += 1 
 				if(verbose_mode):
@@ -88,7 +98,7 @@ def attack():
 					output_file.write(username[0:-1] +":"+password[0:-1])
 				if(testall == False):
 					sys.exit(1)
-
+		#show progress bar
 		progress(c_test, m_user*m_pass, status='username :' + username)
 		#endFor
 	#endFor
@@ -98,6 +108,7 @@ def attack():
 #main
 try:
 	printStartMessage()
+	#loading args
 	opts, args = getopt.getopt(sys.argv[1:], 'thvl:u:p:s:a:o:', ['testall','help', 'verbose', "url=","user_option=","pass_option=","username_wordlist=","password_wordlist=","output="])
 except getopt.GetoptError as err:
 	print(err)
@@ -105,10 +116,11 @@ except getopt.GetoptError as err:
 	sys.exit(2)
 except:
 	print("err")
+	sys.exit(2)
+#config var
 for opt, arg in opts:
 	if opt in ("-h", "--help"):
 		printHelp()
-		#print 'brutforce_post.py -u url -user <user_post_option> -pass <password_post_option> -usrwl <username wordlist> -passwl <password wordlist> -v'
 		sys.exit(1)
 	elif opt in ("-v", "--verbose"):
 		verbose_mode = True
@@ -126,10 +138,11 @@ for opt, arg in opts:
 		output = arg
 	elif opt in ("-t", "--testall"):
 		testall = True
-
+#check for args
 if(len(sys.argv[1:]) < 5):
 	print(getopt.GetoptError("incomplete command"))
 	printHelp()
 	sys.exit(2)
+#starting brutforce
 attack()
 	
