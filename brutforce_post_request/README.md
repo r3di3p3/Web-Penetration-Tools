@@ -41,11 +41,11 @@ This script is designed to perform a brute force attack on an authentication web
 </form> 
 ```
 ## Exemple
-___Stop on the frist correct login___
+___Stop at the first successful authentication___
 ```
 ssh$ brutforce_post.py -l http://localhost/login.php -u username -p password -s /usr/share/wordlists/metasploit/http_default_users.txt -a /usr/share/wordlists/metasploit/http_default_pass.txt -v
 ```
-___Test All Combination and save all correct login to found.txt___
+___Test All Combination and save all successful authentication to file found.txt___
 ```
 ssh$ brutforce_post.py -l http://localhost/login.php -u username -p password -s /usr/share/wordlists/metasploit/http_default_users.txt -a /usr/share/wordlists/metasploit/http_default_pass.txt -t -o found.txt
 ```
